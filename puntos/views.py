@@ -4,7 +4,7 @@ from .models import Entrada
 
 # Create your views here.
 def index(request):
-    entry_list = Entrada.objects.order_by("fecha")
+    entry_list = Entrada.objects.order_by("-fecha")
     template = loader.get_template('puntos/index.html')
     context = {
         "entry_list": entry_list,
