@@ -7,21 +7,45 @@
 {% block content %} 
 <section class="gradient-custom-5">
     <div class="container py-5">
-      <div class="main-timeline-5">
-        {% for entry in entry_list%}
-        <div class="timeline-5 right-5">
-          <div class="card">
-            <div class="card-body p-4">
-              <h5>{{ entry.seccion }} rezaron un {{ entry.tipo_oracion }} (+{{entry.tipo_oracion.puntos}})</h5> 
-              <span class="small text-muted"><i class="fas fa-clock me-1"></i>{{ entry.fecha }}</span>
-            </br>
-            </br>
-              {% load static %} <img src="{% static entry.tipo_oracion.imagen  %}" width="100%"/>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h4 class="text-center mb-4">😎 RANKING 😎</h4>
+                  <table class="table table-sm table-bordered text-center" style="background-color: rgba(255, 255, 255, 0.5);">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Sección</th>
+                            <th>Puntos Totales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for seccion in secciones %}
+                        <tr>
+                            <td>{% if forloop.first %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% endif %}</td>
+                            <td>{{ seccion.descripcion }}</td>
+                            <td>{{ seccion.puntos_totales }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
-          </div>
         </div>
-        {% endfor %}
-      </div>
+        
+        <div class="main-timeline-5 mt-5">
+            {% for entry in entry_list %}
+            <div class="timeline-5 right-5">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h5>{{ entry.seccion }} rezaron un {{ entry.tipo_oracion }} (+{{entry.tipo_oracion.puntos}})</h5> 
+                        <span class="small text-muted"><i class="fas fa-clock me-1"></i>{{ entry.fecha }}</span>
+                        <br><br>
+                        {% load static %}
+                        <img src="{% static entry.tipo_oracion.imagen %}" width="100%"/>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-  </section>
+</section>
 {% endblock %}

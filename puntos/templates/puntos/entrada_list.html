@@ -1,0 +1,52 @@
+{% extends 'master.html' %}
+
+{% block title %}
+Oración CIP - Admin
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Ranking por sección</h2>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Sección</th>
+                <th>Puntos Totales</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for seccion in secciones %}
+            <tr>
+                <td>{{ seccion.descripcion }}</td>
+                <td>{{ seccion.puntos_totales }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Lista de registros</h2>
+    <a href="{% url 'entrada_create' %}" class="btn btn-primary mb-3">Agregar</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Oración</th>
+                <th>Sección</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entrada in entradas %}
+            <tr>
+                <td>{{ entrada.fecha }}</td>
+                <td>{{ entrada.tipo_oracion }}</td>
+                <td>{{ entrada.seccion }}</td>
+                <td>
+                    <a href="{% url 'entrada_update' entrada.pk %}" class="btn btn-sm btn-info">Editar</a>
+                    <a href="{% url 'entrada_delete' entrada.pk %}" class="btn btn-sm btn-danger">Borrar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

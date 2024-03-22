@@ -1,0 +1,31 @@
+{% extends "master.html" %}
+
+{% block title %}
+   Acceder
+{% endblock %}
+
+{% block content %} 
+<div class="container mt-5">
+    <div class="row justify-content-center">  <!-- Center the content -->
+        <div class="col-md-6">  <!-- Set the column width -->
+            <h2 class="text-center">👮 Panel administrativo</h2>
+            <h5 class="text-center">Si no sos Sugus, Grego o Cami no deberías estar acá 👀</h5>
+            {% if error %}
+                <p class="text-danger text-center">{{ error }}</p>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3 mt-4">
+                    <label for="username" class="form-label">Usuario:</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Acceder</button>  <!-- Make the button full width -->
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
